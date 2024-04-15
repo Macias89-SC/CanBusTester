@@ -13,39 +13,60 @@ import QtQuick.Studio.Components 1.0
 import QtQuick.Studio.Effects 1.0
 import QtQuick.Layouts
 import TesterCanBus_Mazda
+import MyController
 
 
 
-Rectangle {
+Item {
     id:mainRectangle
-    width: 1000
-    height: 500
+    width: 1030
+    height: 740
+
+    Controller{
+        id:myController
+    }
 
     Image {
         id: mainBackground
         x: 0
         y: 0
-        width: 1029
+        width: 1030
         height: 728
         source: "Assets/MainBackground/MainBackground.svg"
         sourceSize.width: 1000
         sourceSize.height: 500
         fillMode: Image.PreserveAspectFit
 
-        Gauge {
+        SpeedGauge {
             id: gauge
-            x: 232
-            y: 8
-            kmh_gauge:25
+            x: 529
+            y: 53
+            kmh_gauge:myController.SpeedGauge
             kmh_string:"test"
         }
-
         FuelLevel {
             id: fuelLevel
-            x: 294
-            y: 408
+            x: 587
+            y: 448
             scale: 0.9
-            fuelLevel:1
+            fuelLevel:myController.FuelLevel
+        }
+        RPMGauge {
+            id: rpm
+            x: 0
+            y: 53
+            width: 500
+            height: 500
+            rpmFrame:myController.RPM
+        }
+        EngineTemp {
+            id: engineTemp
+            x: 63
+            y: 453
+            scale: 0.9
+            currentEngineTemperature:myController.EngineTemp
         }
     }
+
+
 }

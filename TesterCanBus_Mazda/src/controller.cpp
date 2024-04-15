@@ -8,23 +8,61 @@ namespace CanBusGauges{
 
 Controller::Controller(QObject *parent): QObject{parent}
 {
-    QObject::connect(this, &Controller::enableACChanged, [](bool state) { qDebug() << "enableACChanged: " << state; });
+
     initConnection();
 }
-
-int Controller::getFuelLevel() {return this->FuelLevel;}
-void Controller::setFuelLevel(int levelFuel)
+int Controller::getSpeedGauge() const
 {
-    this->FuelLevel = levelFuel;
-    emit setFuelLevel(levelFuel);
+    return SpeedGauge;
 }
 
-int Controller::getSpeedGauge() { return this->SpeedGauge;}
-void Controller::setSpeedGauge(int speed)
+void Controller::setSpeedGauge(const uint &speed)
 {
-    this->SpeedGauge = speed;
-    emit setSpeedGauge(speed);
+    if (this -> SpeedGauge != speed) {
+        this -> SpeedGauge = speed;
+        emit SpeedGaugeChanged();
+    }
 }
+
+int Controller::getEngineTemp() const
+{
+    return EngineTemp;
+}
+
+void Controller::setEngineTemp(const int &temp)
+{
+    if (this -> EngineTemp != temp) {
+        this -> EngineTemp = temp;
+        emit EngineTempChanged();
+    }
+}
+
+int Controller::getRPM() const
+{
+    return RPM;
+}
+
+void Controller::setRPM(const int &rpm)
+{
+    if (this -> RPM != rpm) {
+        this -> RPM = rpm;
+        emit RPMChanged();
+    }
+}
+
+
+int Controller::getFuelLevel() const
+{
+    return FuelLevel;
+}
+
+void Controller::setFuelLevel(const int &levelFuel) {
+    if (this->FuelLevel != levelFuel) {
+        this->FuelLevel = levelFuel;
+        emit FuelLevelChanged();
+    }
+}
+
 
 void Controller::initConnection()
 {
@@ -50,13 +88,20 @@ void Controller::processReceivedFrames()
          m_numberFramesReceived++;
         QCanBusFrame frame = canDevice->readFrame();
         if(frame.frameId()==0x200){
-            qDebug() << "Can send signal: "<<m_numberFramesReceived;
+
         }
         if(frame.frameId()==0x100){
             const QByteArray data = frame.payload();
-            setFuelLevel(data[2]);
+            char speed=data.at(0);
+            char fuel= data.at(7);
+            char rpm = data.at(5);
+            char engine = data.at(2);
+            Controller::setSpeedGauge(static_cast<uint>(speed));
+            Controller::setFuelLevel(static_cast<int>(fuel));
+            Controller::setEngineTemp(static_cast<int>(engine));
+            Controller::setRPM(static_cast<int>(rpm));
 
-            //  ui->checkBox->setChecked(data[0]); // pod to podstawić dane do szybkościomierza
+           // qDebug() << "engine: "<<static_cast<int>(engine);
         }
 
     }

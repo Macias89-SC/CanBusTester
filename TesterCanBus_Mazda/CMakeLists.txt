@@ -28,6 +28,7 @@ target_link_libraries(TesterCanBus_MazdaApp PUBLIC
     Qt6::Qml
     Qt6::Quick
     Qt6::SerialBus
+
 )
 
 set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)

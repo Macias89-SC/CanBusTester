@@ -12,28 +12,40 @@ class Controller: public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool enableAC MEMBER enableAC NOTIFY enableACChanged FINAL)
-    Q_PROPERTY(int SpeedGauge READ getSpeedGauge WRITE setSpeedGauge NOTIFY SpeedGaugeChanged FINAL)
+    Q_PROPERTY(uint SpeedGauge READ getSpeedGauge WRITE setSpeedGauge NOTIFY SpeedGaugeChanged FINAL)
     Q_PROPERTY(int FuelLevel READ getFuelLevel WRITE setFuelLevel NOTIFY FuelLevelChanged FINAL)
+        Q_PROPERTY(int EngineTemp READ getEngineTemp WRITE setEngineTemp NOTIFY EngineTempChanged FINAL)
+        Q_PROPERTY(int RPM READ getRPM WRITE setRPM NOTIFY RPMChanged FINAL)
 public:
     explicit Controller(QObject *parent = nullptr );
 
-    int getSpeedGauge();
-    void setSpeedGauge(int speed);
+    int getSpeedGauge() const;
+    void setSpeedGauge(const uint &speed);
 
-    int getFuelLevel();
-    void setFuelLevel(int levelFuel);
+    int getFuelLevel() const;
+    void setFuelLevel(const int &levelFuel);
+
+    int getEngineTemp() const;
+    void setEngineTemp(const int &temp);
+
+    int getRPM() const;
+    void setRPM(const int &rpm);
 
 
 signals:
-    void enableACChanged(bool state);
-    void  SpeedGaugeChanged(int speed);
-    void  FogLightChanged(bool state);
-    void  FuelLevelChanged(int levelFuel);
+    void  enableACChanged();
+    void  SpeedGaugeChanged();
+    void  FogLightChanged();
+    void  FuelLevelChanged();
+    void  EngineTempChanged();
+    void  RPMChanged();
 
 private:
     bool enableAC{};
-    int SpeedGauge = 20;
-    int FuelLevel=2;
+    uint SpeedGauge;
+    int FuelLevel;
+    int EngineTemp;
+    int RPM;
     void processReceivedFrames();
     void initConnection();
     std::unique_ptr<QCanBusDevice>canDevice;
