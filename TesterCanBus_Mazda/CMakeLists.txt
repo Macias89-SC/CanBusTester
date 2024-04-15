@@ -7,13 +7,14 @@ project(TesterCanBus_MazdaApp LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick SerialBus)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
     qt_standard_project_setup()
 endif()
 
-qt_add_executable(TesterCanBus_MazdaApp src/main.cpp)
+qt_add_executable(TesterCanBus_MazdaApp src/main.cpp
+    src/controller.h src/controller.cpp)
 
 qt_add_resources(TesterCanBus_MazdaApp "configuration"
     PREFIX "/"
@@ -21,11 +22,12 @@ qt_add_resources(TesterCanBus_MazdaApp "configuration"
         qtquickcontrols2.conf
 )
 
-target_link_libraries(TesterCanBus_MazdaApp PRIVATE
+target_link_libraries(TesterCanBus_MazdaApp PUBLIC
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::SerialBus
 )
 
 set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)

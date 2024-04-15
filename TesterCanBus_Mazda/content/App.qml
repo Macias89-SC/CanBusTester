@@ -5,14 +5,14 @@ import QtQuick 6.2
 import TesterCanBus_Mazda
 
 Window {
-    width: mainScreen.width
-    height: mainScreen.height
+    width:1000
+    height: 500
 
     visible: true
-    title: "TesterCanBus_Mazda"
+    title: "TesterCanBus"
 
-    Screen01 {
-        id: mainScreen
+    MainWindow{
+        anchors.fill: parent
     }
 
 }
