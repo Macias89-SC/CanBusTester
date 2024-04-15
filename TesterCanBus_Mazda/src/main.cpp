@@ -3,14 +3,19 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <memory>
 
 #include "app_environment.h"
 #include "import_qml_components_plugins.h"
 #include "import_qml_plugins.h"
+#include "src/controller.h"
 
 int main(int argc, char *argv[])
 {
     set_qt_environment();
+
+    auto CanBusSignal = std::make_unique<CanBusGauges::Controller>();
 
     QGuiApplication app(argc, argv);
 
@@ -25,6 +30,8 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
+
+    engine.rootContext()->setContextProperty("CanBusSignal",CanBusSignal.get());
 
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
     engine.addImportPath(":/");
