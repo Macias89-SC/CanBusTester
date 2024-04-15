@@ -10,9 +10,11 @@ qt6_add_qml_module(content
     RESOURCE_PREFIX "/qt/qml"
     QML_FILES
         App.qml
+        EngineTemp.ui.qml
         FuelLevel.ui.qml
-        Gauge.ui.qml
         MainWindow.ui.qml
+        RPMGauge.ui.qml
+        SpeedGauge.ui.qml
     RESOURCES
         Assets/FuelLevel_EngineTemp/linia1.svg
         Assets/FuelLevel_EngineTemp/linia1_orange.svg
@@ -63,6 +65,7 @@ qt6_add_qml_module(content
         Assets/Icons/LightIcons/Right_active.svg
         Assets/Icons/LightIcons/Right_NotActive.svg
         Assets/MainBackground/MainBackground.svg
+        Assets/RPMGauge/tarcza.svg
         Assets/SpeedGaugePicture/MainBackground.svg
         Assets/SpeedGaugePicture/SmallBackgroundSpedometer.svg
 

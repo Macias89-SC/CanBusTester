@@ -5,9 +5,8 @@ import QtQuick 6.2
 import TesterCanBus_Mazda
 
 Window {
-    width:1000
-    height: 500
-
+    width:1030
+    height: 740
     visible: true
     title: "TesterCanBus"
 

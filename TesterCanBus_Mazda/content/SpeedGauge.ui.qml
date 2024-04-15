@@ -12,6 +12,7 @@ import QtQuick.Shapes 1.0
 import QtQuick.Studio.Effects 1.0
 import QtQuick.Timeline 1.0
 import QtQuick.Studio.LogicHelper 1.0
+//import QtGraphicalEffects
 import TesterCanBus_Mazda
 
 Item {
@@ -112,7 +113,10 @@ Item {
             height: 127
             radius: 2.5
             border.width: 0
-
+         //   layer.effect: DirectionalBlurEffect {
+         //       id: directionalBlur
+         //       length: 4
+         //   }
             gradient: Gradient {
                 GradientStop {
                     position: 0
@@ -125,15 +129,6 @@ Item {
                 }
             }
             layer.enabled: true
-
-            Rectangle {
-                id: rectangle6
-                x: 10
-                y: 0
-                width: 1
-                height: 100
-                layer.enabled: true
-            }
         }
       }
 
@@ -216,56 +211,6 @@ Item {
                 value: 307
             }
         }
-
-
-
-/*
-        KeyframeGroup {
-            target: kph_195_95
-            property: "scale"
-
-            Keyframe {
-                frame: 0
-                value: 1.2
-            }
-
-            Keyframe {
-                frame: 2
-                value: 1.2
-            }
-
-            Keyframe {
-                frame: 4
-                value: 1
-            }
-        }
-
-
-
-        KeyframeGroup {
-            target: kph_195_103
-            property: "color"
-            Keyframe {
-                frame: 77
-                value: "#ffffff"
-            }
-
-            Keyframe {
-                frame: 79
-                value: "#5ca8ba"
-            }
-
-            Keyframe {
-                frame: 81
-                value: "#5ca8ba"
-            }
-
-            Keyframe {
-                frame: 83
-                value: "#ffffff"
-            }
-        }
-        */
     }
 
     Text {
@@ -333,15 +278,5 @@ Item {
         font.bold: true
     }
 
-/*
-    StateGroup {
-        id: stateGroup
-        states: [
-            State {
-                name: "State1"
-            }
-        ]
-    }
-*/
 }
 

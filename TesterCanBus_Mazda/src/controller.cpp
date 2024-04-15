@@ -16,13 +16,40 @@ int Controller::getSpeedGauge() const
     return SpeedGauge;
 }
 
-void Controller::setSpeedGauge(const int &speed)
+void Controller::setSpeedGauge(const uint &speed)
 {
     if (this -> SpeedGauge != speed) {
         this -> SpeedGauge = speed;
         emit SpeedGaugeChanged();
     }
 }
+
+int Controller::getEngineTemp() const
+{
+    return EngineTemp;
+}
+
+void Controller::setEngineTemp(const int &temp)
+{
+    if (this -> EngineTemp != temp) {
+        this -> EngineTemp = temp;
+        emit EngineTempChanged();
+    }
+}
+
+int Controller::getRPM() const
+{
+    return RPM;
+}
+
+void Controller::setRPM(const int &rpm)
+{
+    if (this -> RPM != rpm) {
+        this -> RPM = rpm;
+        emit RPMChanged();
+    }
+}
+
 
 int Controller::getFuelLevel() const
 {
@@ -61,13 +88,20 @@ void Controller::processReceivedFrames()
          m_numberFramesReceived++;
         QCanBusFrame frame = canDevice->readFrame();
         if(frame.frameId()==0x200){
-            qDebug() << "Can send signal: "<<m_numberFramesReceived;
+
         }
         if(frame.frameId()==0x100){
             const QByteArray data = frame.payload();
-            char byte=data.at(0);
-            Controller::setSpeedGauge(static_cast<int>(byte));
-            qDebug() << "Speed: "<<static_cast<int>(byte);
+            char speed=data.at(0);
+            char fuel= data.at(7);
+            char rpm = data.at(5);
+            char engine = data.at(2);
+            Controller::setSpeedGauge(static_cast<uint>(speed));
+            Controller::setFuelLevel(static_cast<int>(fuel));
+            Controller::setEngineTemp(static_cast<int>(engine));
+            Controller::setRPM(static_cast<int>(rpm));
+
+           // qDebug() << "engine: "<<static_cast<int>(engine);
         }
 
     }
