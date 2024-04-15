@@ -17,23 +17,23 @@ class Controller: public QObject
 public:
     explicit Controller(QObject *parent = nullptr );
 
-    int getSpeedGauge();
-    void setSpeedGauge(int speed);
+    int getSpeedGauge() const;
+    void setSpeedGauge(const int &speed);
 
-    int getFuelLevel();
-    void setFuelLevel(int levelFuel);
+    int getFuelLevel() const;
+    void setFuelLevel(const int &levelFuel);
 
 
 signals:
-    void enableACChanged(bool state);
-    void  SpeedGaugeChanged(int speed);
-    void  FogLightChanged(bool state);
-    void  FuelLevelChanged(int levelFuel);
+    void  enableACChanged();
+    void  SpeedGaugeChanged();
+    void  FogLightChanged();
+    void  FuelLevelChanged();
 
 private:
     bool enableAC{};
-    int SpeedGauge = 20;
-    int FuelLevel=2;
+    int SpeedGauge;
+    int FuelLevel;
     void processReceivedFrames();
     void initConnection();
     std::unique_ptr<QCanBusDevice>canDevice;

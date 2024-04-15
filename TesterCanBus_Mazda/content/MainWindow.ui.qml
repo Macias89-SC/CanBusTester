@@ -13,6 +13,7 @@ import QtQuick.Studio.Components 1.0
 import QtQuick.Studio.Effects 1.0
 import QtQuick.Layouts
 import TesterCanBus_Mazda
+import MyController
 
 
 
@@ -20,6 +21,10 @@ Rectangle {
     id:mainRectangle
     width: 1000
     height: 500
+
+    Controller{
+        id:myController
+    }
 
     Image {
         id: mainBackground
@@ -36,7 +41,7 @@ Rectangle {
             id: gauge
             x: 232
             y: 8
-            kmh_gauge:25
+            kmh_gauge:myController.SpeedGauge
             kmh_string:"test"
         }
 
@@ -45,7 +50,7 @@ Rectangle {
             x: 294
             y: 408
             scale: 0.9
-            fuelLevel:1
+            fuelLevel:myController.FuelLevel
         }
     }
 }

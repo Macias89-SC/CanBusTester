@@ -8,23 +8,34 @@ namespace CanBusGauges{
 
 Controller::Controller(QObject *parent): QObject{parent}
 {
-    QObject::connect(this, &Controller::enableACChanged, [](bool state) { qDebug() << "enableACChanged: " << state; });
+
     initConnection();
 }
-
-int Controller::getFuelLevel() {return this->FuelLevel;}
-void Controller::setFuelLevel(int levelFuel)
+int Controller::getSpeedGauge() const
 {
-    this->FuelLevel = levelFuel;
-    emit setFuelLevel(levelFuel);
+    return SpeedGauge;
 }
 
-int Controller::getSpeedGauge() { return this->SpeedGauge;}
-void Controller::setSpeedGauge(int speed)
+void Controller::setSpeedGauge(const int &speed)
 {
-    this->SpeedGauge = speed;
-    emit setSpeedGauge(speed);
+    if (this -> SpeedGauge != speed) {
+        this -> SpeedGauge = speed;
+        emit SpeedGaugeChanged();
+    }
 }
+
+int Controller::getFuelLevel() const
+{
+    return FuelLevel;
+}
+
+void Controller::setFuelLevel(const int &levelFuel) {
+    if (this->FuelLevel != levelFuel) {
+        this->FuelLevel = levelFuel;
+        emit FuelLevelChanged();
+    }
+}
+
 
 void Controller::initConnection()
 {
@@ -54,9 +65,9 @@ void Controller::processReceivedFrames()
         }
         if(frame.frameId()==0x100){
             const QByteArray data = frame.payload();
-            setFuelLevel(data[2]);
-
-            //  ui->checkBox->setChecked(data[0]); // pod to podstawić dane do szybkościomierza
+            char byte=data.at(0);
+            Controller::setSpeedGauge(static_cast<int>(byte));
+            qDebug() << "Speed: "<<static_cast<int>(byte);
         }
 
     }
