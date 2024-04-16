@@ -95,7 +95,7 @@ Rectangle{
         ]
         startFrame: 0
         enabled: true
-        endFrame: 1000
+        endFrame: 127
 
         KeyframeGroup {
             target: rot
@@ -105,7 +105,7 @@ Rectangle{
                 value: -125.5
             }
             Keyframe {
-                frame: 1000
+                frame: 127
                 value: 125
             }
         }
@@ -119,7 +119,7 @@ Rectangle{
             }
             Keyframe {
                 value: 125
-                frame: 1000
+                frame: 127
             }
         }
 
@@ -141,7 +141,7 @@ Rectangle{
             }
             Keyframe {
                 value: "#e01009"
-                frame: 1000
+                frame: 127
             }
         }
     }

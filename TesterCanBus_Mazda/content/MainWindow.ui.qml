@@ -22,7 +22,7 @@ Item {
     width: 1030
     height: 740
 
-    Controller{
+   Controller{
         id:myController
     }
 
@@ -42,7 +42,7 @@ Item {
             x: 529
             y: 53
             kmh_gauge:myController.SpeedGauge
-            kmh_string:"test"
+            kmh_string:myController.SpeedText
         }
         FuelLevel {
             id: fuelLevel
@@ -63,8 +63,16 @@ Item {
             id: engineTemp
             x: 63
             y: 453
+            currentEngineTemperature: myController.EngineTemp
             scale: 0.9
-            currentEngineTemperature:myController.EngineTemp
+        }
+        IsoIcons {
+            id: isoIcons
+            x: 273
+            y: 576
+            checkEngine: myController.CheckEngine
+            charging: myController.Charging
+            scale: 0.8
         }
     }
 

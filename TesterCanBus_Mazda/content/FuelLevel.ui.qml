@@ -151,22 +151,6 @@ Item {
         fillMode: Image.PreserveAspectFit
     }
 
-
-
-
-/*
-    Image {
-        id: otok1
-        x: -79
-        y: 5
-        width: 658
-        height: 120
-        visible: true
-        source: "images/SpeedGauge/otok.svg"
-        fillMode: Image.PreserveAspectFit
-    }
-
-*/
     states: [
         State {
             name: "Level0"

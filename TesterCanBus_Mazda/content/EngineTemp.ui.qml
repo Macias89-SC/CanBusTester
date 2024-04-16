@@ -193,11 +193,11 @@ Item {
             }
             PropertyChanges {
                 target: engineTemp_active
-                opacity: 1
+                opacity: 0
             }
             PropertyChanges {
                 target: engineTemp_NotActive
-                opacity: 0
+                opacity: 1
             }
         },
 
@@ -231,11 +231,11 @@ Item {
             }
             PropertyChanges {
                 target: engineTemp_active
-                opacity: 1
+                opacity: 0
             }
             PropertyChanges {
                 target: engineTemp_NotActive
-                opacity: 0
+                opacity: 1
             }
         },
 
@@ -269,11 +269,11 @@ Item {
             }
             PropertyChanges {
                 target: engineTemp_active
-                opacity: 1
+                opacity: 0
             }
             PropertyChanges {
                 target: engineTemp_NotActive
-                opacity: 0
+                opacity: 1
             }
         },
         State {
@@ -305,7 +305,7 @@ Item {
                 opacity: 0
             }
             PropertyChanges {
-                target: engineTemp_active
+                target: engineTemp_NotActive
                 opacity: 1
             }
             PropertyChanges {
@@ -343,11 +343,11 @@ Item {
             }
             PropertyChanges {
                 target: engineTemp_active
-                opacity: 1
+                opacity: 0
             }
             PropertyChanges {
                 target: engineTemp_NotActive
-                opacity: 0
+                opacity: 1
             }
         },
         State {
@@ -380,11 +380,11 @@ Item {
             }
             PropertyChanges {
                 target: engineTemp_active
-                opacity: 1
+                opacity: 0
             }
             PropertyChanges {
                 target: engineTemp_NotActive
-                opacity: 0
+                opacity: 1
             }
         },
         State {
@@ -417,11 +417,11 @@ Item {
             }
             PropertyChanges {
                 target: engineTemp_active
-                opacity: 0
+                opacity: 1
             }
             PropertyChanges {
                 target: engineTemp_NotActive
-                opacity: 1
+                opacity: 0
             }
         }
     ]
