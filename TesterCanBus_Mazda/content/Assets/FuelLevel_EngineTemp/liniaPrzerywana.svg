@@ -7,7 +7,7 @@
    viewBox="0 0 175.89453 33.598431"
    version="1.1"
    id="svg9624"
-   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="liniaPrzerywana.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,10 +26,10 @@
      showgrid="false"
      inkscape:zoom="1"
      inkscape:cx="325"
-     inkscape:cy="-60"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="1912"
+     inkscape:cy="-59.5"
+     inkscape:window-width="2048"
+     inkscape:window-height="1089"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
@@ -93,7 +93,7 @@
      id="layer1"
      transform="translate(-16.892362,-99.196225)">
     <path
-       style="display:inline;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#434343;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24, 7.6;stroke-dashoffset:59.52;stroke-opacity:1;paint-order:stroke fill markers"
+       style="display:inline;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#333333;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24, 7.6;stroke-dashoffset:59.52;stroke-opacity:1;paint-order:stroke fill markers"
        d="m 16.892362,101.15576 c 50.88326,37.21275 119.047148,40.30945 176.159108,-0.3717"
        id="path9558"
        sodipodi:nodetypes="cc" />

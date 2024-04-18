@@ -13,6 +13,7 @@ qt6_add_qml_module(content
         EngineTemp.ui.qml
         FuelLevel.ui.qml
         IsoIcons.ui.qml
+        LightIcons.ui.qml
         MainWindow.ui.qml
         RPMGauge.ui.qml
         SpeedGauge.ui.qml

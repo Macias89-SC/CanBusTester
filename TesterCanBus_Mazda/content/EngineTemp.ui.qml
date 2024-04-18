@@ -150,6 +150,7 @@ Item {
         id: engineTemp_NotActive
         x: 163
         y: 2
+        scale: 0.9
         source: "Assets/Icons/GaugesIcons/EngineTemp_NotActive.svg"
         fillMode: Image.PreserveAspectFit
     }
@@ -159,6 +160,7 @@ Item {
         x: 163
         y: 2
         source: "Assets/Icons/GaugesIcons/EngineTemp_active.svg"
+        scale: 0.9
         fillMode: Image.PreserveAspectFit
     }
 

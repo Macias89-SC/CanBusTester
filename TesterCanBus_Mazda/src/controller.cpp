@@ -102,6 +102,138 @@ void Controller::setSpeedText(const QString &speedText)
     }
 }
 
+bool Controller::getAbsActive() const
+{
+    return AbsActive;
+}
+
+void Controller::setAbsActive(const bool &absActive)
+{
+    if (this->AbsActive != absActive) {
+        this->AbsActive = absActive;
+        emit AbsActiveChanged();
+    }
+}
+
+bool Controller::getCruiseControlActive() const
+{
+    return CruiseControlActive;
+}
+
+void Controller::setCruiseControlActive(const bool &cruiseControlActive)
+{
+    if (this->CruiseControlActive != cruiseControlActive) {
+        this->CruiseControlActive = cruiseControlActive;
+        emit CruiseControlActiveChanged();
+    }
+}
+
+bool Controller::getCruiseControlCancel() const
+{
+    return CruiseControlCancel;
+}
+
+void Controller::setCruiseControlCancel(const bool &cruiseControlCancel)
+{
+    if (this->CruiseControlCancel != cruiseControlCancel) {
+        this->CruiseControlCancel = cruiseControlCancel;
+        emit CruiseControlCancelChanged();
+    }
+}
+
+// Analogicznie dodaj funkcje dostępu i implementacje dla pozostałych zmiennych
+
+bool Controller::getDoorOpenActive() const
+{
+    return DoorOpenActive;
+}
+
+void Controller::setDoorOpenActive(const bool &doorOpenActive)
+{
+    if (this->DoorOpenActive != doorOpenActive) {
+        this->DoorOpenActive = doorOpenActive;
+        emit DoorOpenActiveChanged();
+    }
+}
+
+bool Controller::getEspActive() const
+{
+    return EspActive;
+}
+
+void Controller::setEspActive(const bool &espActive)
+{
+    if (this->EspActive != espActive) {
+        this->EspActive = espActive;
+        emit EspActiveChanged();
+    }
+}
+
+bool Controller::getImobilizerActive() const
+{
+    return ImobilizerActive;
+}
+
+void Controller::setImobilizerActive(const bool &imobilizerActive)
+{
+    if (this->ImobilizerActive != imobilizerActive) {
+        this->ImobilizerActive = imobilizerActive;
+        emit ImobilizerActiveChanged();
+    }
+}
+
+bool Controller::getOilPressureFault() const
+{
+    return OilPressureFault;
+}
+
+void Controller::setOilPressureFault(const bool &oilPressureFault)
+{
+    if (this->OilPressureFault != oilPressureFault) {
+        this->OilPressureFault = oilPressureFault;
+        emit OilPressureFaultChanged();
+    }
+}
+
+bool Controller::getParkingBrakeActive() const
+{
+    return ParkingBrakeActive;
+}
+
+void Controller::setParkingBrakeActive(const bool &parkingBrakeActive)
+{
+    if (this->ParkingBrakeActive != parkingBrakeActive) {
+        this->ParkingBrakeActive = parkingBrakeActive;
+        emit ParkingBrakeActiveChanged();
+    }
+}
+
+bool Controller::getSeatBeltActive() const
+{
+    return SeatBeltActive;
+}
+
+void Controller::setSeatBeltActive(const bool &seatBeltActive)
+{
+    if (this->SeatBeltActive != seatBeltActive) {
+        this->SeatBeltActive = seatBeltActive;
+        emit SeatBeltActiveChanged();
+    }
+}
+
+bool Controller::getSteeringFaultActive() const
+{
+    return SteeringFaultActive;
+}
+
+void Controller::setSteeringFaultActive(const bool &steeringFaultActive)
+{
+    if (this->SteeringFaultActive != steeringFaultActive) {
+        this->SteeringFaultActive = steeringFaultActive;
+        emit SteeringFaultActiveChanged();
+    }
+}
+
 
 void Controller::initConnection()
 {

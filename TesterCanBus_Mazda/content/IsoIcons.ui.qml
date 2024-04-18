@@ -1,84 +1,64 @@
-/*
-This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
-It is supposed to be strictly declarative and only uses a subset of QML. If you edit
-this file manually, you might introduce QML code that is not supported by Qt Design Studio.
-Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
-*/
-
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
-Item {
-    id:iso_Icons
-    width: 500
-    height: 100
+RowLayout {
+    id: iso_Icons
+    width: 800
+    height: 50
 
-    property bool checkEngine: false
-    property bool charging: false
+    property bool checkEngine_active: false
+    property bool charging_active: false
+    property bool abs_active: false
+    property bool cruiseControl_active: false
+    property bool doorOpen_active: false
+    property bool esp_active: false
+    property bool imobilizer_active: false
+    property bool parkingBrake_active: false
+    property bool seatBelt_active: false
+    property bool sterringFault_active: false
+    property bool antiFog_active: false
 
-    Image {
-        id: charging_active
-        x: 14
-        y: 31
-        source: "Assets/Icons/charging_active.svg"
-        fillMode: Image.PreserveAspectFit
-        visible: iso_Icons.charging===true
-    }
+    Repeater {
+       model: [
+     { activePath: "Assets/Icons/charging_active.svg", inactivePath: "Assets/Icons/charging_NotActive.svg", isActive: charging_active, x: 0, y: 0 },
+     { activePath: "Assets/Icons/CheckEngine_active.svg", inactivePath: "Assets/Icons/CheckEngine_NotActive.svg", isActive: checkEngine_active, x: 80, y: 0 },
+     { activePath: "Assets/Icons/CruiseControl_active.svg", inactivePath: "Assets/Icons/CruiseControl_NotActive.svg", isActive: cruiseControl_active, x: 160, y:0 },
+     { activePath: "Assets/Icons/ABS_active.svg", inactivePath: "Assets/Icons/ABS_NotActive.svg", isActive: abs_active, x: 240, y: 0 },
+     { activePath: "Assets/Icons/DoorOpen_active.svg", inactivePath: "Assets/Icons/DoorOpen_NotActive.svg", isActive: doorOpen_active, x: 320, y: 0 },
+     { activePath: "Assets/Icons/ESP_active.svg", inactivePath: "Assets/Icons/ESP_NotActive.svg", isActive: esp_active, x: 400, y: 0 },
+     { activePath: "Assets/Icons/Imobilizer_fault.svg", inactivePath: "Assets/Icons/Imobilizer_NotFault.svg", isActive: imobilizer_active, x: 480, y: 0 },
+     { activePath: "Assets/Icons/ParkingBreak_active.svg", inactivePath: "Assets/Icons/ParkingBreak_NotActive.svg", isActive: parkingBrake_active, x: 560, y: 0 },
+     { activePath: "Assets/Icons/SeatBelt_active.svg", inactivePath: "Assets/Icons/SeatBelt_NotActive.svg", isActive: seatBelt_active, x: 640, y: 0 },
+     { activePath: "Assets/Icons/SterringFault_active.svg", inactivePath: "Assets/Icons/SterringFault_NotActive.svg",isActive: sterringFault_active, x: 720, y: 0 },
+     { activePath: "Assets/Icons/LightIcons/AntiFog_active.svg", inactivePath:"Assets/Icons/LightIcons/AntiFog_NotActive.svg",isActive: antiFog_active, x: 800, y: 0 },
+        ]
 
-    Image {
-        id: charging_NotActive
-        x: 14
-        y: 31
-        source: "Assets/Icons/charging_NotActive.svg"
-        fillMode: Image.PreserveAspectFit
-        visible: iso_Icons.charging===false
-    }
+        delegate: RowLayout {
+            width: 100
+            height: 100
+            x: modelData.x
+            y: modelData.y
 
-    Image {
-        id: checkEngine_active
-        x: 100
-        y: 32
-        source: "Assets/Icons/CheckEngine_active.svg"
-        fillMode: Image.PreserveAspectFit
-        visible: iso_Icons.checkEngine === true
-    }
-
-    Image {
-        id: checkEngine_NotActive
-        x: 100
-        y: 32
-        source: "Assets/Icons/CheckEngine_NotActive.svg"
-        fillMode: Image.PreserveAspectFit
-        visible: iso_Icons.checkEngine === false
-    }
-
-
-    states: [
-        State {
-            name: "charging_faultActive"
-            when: iso_Icons.charging === true
-
-            PropertyChanges {
-                target: charging_active
-                opacity: 1
+            // Obraz dla wersji aktywnej
+            Image {
+                anchors.centerIn: parent
+                source: modelData.activePath
+                width: 50
+                height: 50
+                visible: modelData.isActive
             }
-            PropertyChanges {
-                target: charging_NotActive
-                opacity: 0
-            }
-        },
-        State {
-            name: "charging_faultNOTActive"
-            when: iso_Icons.charging === false
 
-            PropertyChanges {
-                target: charging_active
-                opacity: 0
-            }
-            PropertyChanges {
-                target: charging_NotActive
-                opacity: 1
+            // Obraz dla wersji nieaktywnej
+            Image {
+                anchors.centerIn: parent
+                source: modelData.inactivePath
+                width: 50
+                height: 50
+                visible: !modelData.isActive
             }
         }
-    ]
+    }
 }
+
+
