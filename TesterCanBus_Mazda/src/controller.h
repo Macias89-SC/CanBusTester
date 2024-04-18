@@ -18,6 +18,18 @@ class Controller: public QObject
     Q_PROPERTY(QString SpeedText READ getSpeedText WRITE setSpeedText NOTIFY SpeedTextChanged FINAL)
     Q_PROPERTY(bool  Charging READ getCharging WRITE setCharging NOTIFY ChargingChanged FINAL)
     Q_PROPERTY(bool CheckEngine READ getCheckEngine WRITE setCheckEngine NOTIFY CheckEngineChanged FINAL);
+    Q_PROPERTY(bool  AbsActive READ getAbsActive WRITE setAbsActive NOTIFY AbsActiveChanged FINAL)
+    Q_PROPERTY(bool  CruiseControlActive READ getCruiseControlActive WRITE setCruiseControlActive NOTIFY CruiseControlActiveChanged FINAL)
+    Q_PROPERTY(bool  CruiseControlCancel READ getCruiseControlCancel WRITE setCruiseControlCancel NOTIFY CruiseControlCancelChanged FINAL)
+    Q_PROPERTY(bool  DoorOpenActive READ getDoorOpenActive WRITE setDoorOpenActive NOTIFY DoorOpenActiveChanged FINAL)
+    Q_PROPERTY(bool  EspActive READ getEspActive WRITE setEspActive NOTIFY EspActiveChanged FINAL)
+    Q_PROPERTY(bool  ImobilizerActive READ getImobilizerActive WRITE setImobilizerActive NOTIFY ImobilizerActiveChanged FINAL)
+    Q_PROPERTY(bool  OilPressureFault READ getOilPressureFault WRITE setOilPressureFault NOTIFY OilPressureFaultChanged FINAL)
+    Q_PROPERTY(bool  ParkingBrakeActive READ getParkingBrakeActive WRITE setParkingBrakeActive NOTIFY ParkingBrakeActiveChanged FINAL)
+    Q_PROPERTY(bool  SeatBeltActive READ getSeatBeltActive WRITE setSeatBeltActive NOTIFY SeatBeltActiveChanged FINAL)
+    Q_PROPERTY(bool  SteeringFaultActive READ getSteeringFaultActive WRITE setSteeringFaultActive NOTIFY SteeringFaultActiveChanged FINAL)
+
+public:
 public:
     explicit Controller(QObject *parent = nullptr );
 
@@ -42,6 +54,37 @@ public:
     QString getSpeedText() const;
     void setSpeedText(const QString &speedText);
 
+    bool getAbsActive() const;
+    void setAbsActive(const bool &absActive);
+
+    bool getCruiseControlActive() const;
+    void setCruiseControlActive(const bool &cruiseControlActive);
+
+    bool getCruiseControlCancel() const;
+    void setCruiseControlCancel(const bool &cruiseControlCancel);
+
+    bool getDoorOpenActive() const;
+    void setDoorOpenActive(const bool &doorOpenActive);
+
+    bool getEspActive() const;
+    void setEspActive(const bool &espActive);
+
+    bool getImobilizerActive() const;
+    void setImobilizerActive(const bool &imobilizerActive);
+
+    bool getOilPressureFault() const;
+    void setOilPressureFault(const bool &oilPressureFault);
+
+    bool getParkingBrakeActive() const;
+    void setParkingBrakeActive(const bool &parkingBrakeActive);
+
+    bool getSeatBeltActive() const;
+    void setSeatBeltActive(const bool &seatBeltActive);
+
+    bool getSteeringFaultActive() const;
+    void setSteeringFaultActive(const bool &steeringFaultActive);
+
+
 
 signals:
     void  CheckEngineChanged();
@@ -52,6 +95,16 @@ signals:
     void  EngineTempChanged();
     void  RPMChanged();
     void  SpeedTextChanged();
+    void AbsActiveChanged();
+    void CruiseControlActiveChanged();
+    void CruiseControlCancelChanged();
+    void DoorOpenActiveChanged();
+    void EspActiveChanged();
+    void ImobilizerActiveChanged();
+    void OilPressureFaultChanged();
+    void ParkingBrakeActiveChanged();
+    void SeatBeltActiveChanged();
+    void SteeringFaultActiveChanged();
 
 private:
     bool  CheckEngine = false;
@@ -65,6 +118,16 @@ private:
     void initConnection();
     std::unique_ptr<QCanBusDevice>canDevice;
     double m_numberFramesReceived;
+    bool AbsActive = false;
+    bool CruiseControlActive = false;
+    bool CruiseControlCancel = false;
+    bool DoorOpenActive = false;
+    bool EspActive = false;
+    bool ImobilizerActive = false;
+    bool OilPressureFault = false;
+    bool ParkingBrakeActive = false;
+    bool SeatBeltActive = false;
+    bool SteeringFaultActive = false;
 
 };
 }

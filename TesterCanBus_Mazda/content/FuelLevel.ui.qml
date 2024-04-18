@@ -139,6 +139,7 @@ Item {
         height: 41
         source: "Assets/Icons/GaugesIcons/PetrolReserve_NotActive.svg"
         fillMode: Image.PreserveAspectFit
+        scale: 0.9
     }
 
     Image {
@@ -148,6 +149,7 @@ Item {
         width: 50
         height: 41
         source: "Assets/Icons/GaugesIcons/PetrolReserve_active.svg"
+        scale: 0.9
         fillMode: Image.PreserveAspectFit
     }
 

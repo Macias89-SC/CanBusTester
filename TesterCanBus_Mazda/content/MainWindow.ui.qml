@@ -39,41 +39,62 @@ Item {
 
         SpeedGauge {
             id: gauge
-            x: 529
-            y: 53
+            x: 522
+            y: 125
             kmh_gauge:myController.SpeedGauge
             kmh_string:myController.SpeedText
         }
         FuelLevel {
             id: fuelLevel
-            x: 587
-            y: 448
+            x: 581
+            y: 515
             scale: 0.9
             fuelLevel:myController.FuelLevel
         }
         RPMGauge {
             id: rpm
-            x: 0
-            y: 53
+            x: 8
+            y: 125
             width: 500
             height: 500
             rpmFrame:myController.RPM
         }
         EngineTemp {
             id: engineTemp
-            x: 63
-            y: 453
+            x: 62
+            y: 521
             currentEngineTemperature: myController.EngineTemp
             scale: 0.9
         }
         IsoIcons {
             id: isoIcons
-            x: 273
-            y: 576
-            checkEngine: myController.CheckEngine
-            charging: myController.Charging
+            x: 115
+            y: 626
+            doorOpen_active: false
+            sterringFault_active: false
+            seatBelt_active: false
+            parkingBrake_active: false
+            abs_active: false
+            charging_active: false
+            checkEngine_active: false
+            cruiseControl_active: false
+            esp_active:false
+            imobilizer_active:false
+            antiFog_active: false
             scale: 0.8
         }
+        LightIcons {
+            id: lightIcons
+            x: 50
+            y: 189
+            layoutDirection: Qt.RightToLeft
+           // angleStepReadOnly: 60
+           // rotation: -150
+            right_active: false
+            left_active: false
+            highBeam_active: false
+        }
+
     }
 
 
