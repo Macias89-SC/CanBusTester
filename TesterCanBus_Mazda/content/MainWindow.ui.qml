@@ -70,29 +70,29 @@ Item {
             id: isoIcons
             x: 115
             y: 626
-            doorOpen_active: false
-            sterringFault_active: false
-            seatBelt_active: false
-            parkingBrake_active: false
-            abs_active: false
-            charging_active: false
-            checkEngine_active: false
-            cruiseControl_active: false
-            esp_active:false
-            imobilizer_active:false
-            antiFog_active: false
+
+            doorOpen_active: myController.DoorOpenActive
+            sterringFault_active: myController.SteeringFaultActive
+            seatBelt_active: myController.SeatBeltActive
+            parkingBrake_active: myController.ParkingBrakeActive
+            abs_active: myController.AbsActive
+            charging_active: myController.Charging
+            checkEngine_active: myController.CheckEngine
+            cruiseControl_active: myController.CruiseControlActive
+            esp_active: myController.EspActive
+            imobilizer_active:myController.ImobilizerActive
+            antiFog_active: myController.FogLight
+
             scale: 0.8
         }
         LightIcons {
             id: lightIcons
-            x: 50
-            y: 189
-            layoutDirection: Qt.RightToLeft
-           // angleStepReadOnly: 60
-           // rotation: -150
-            right_active: false
-            left_active: false
-            highBeam_active: false
+            x: 440
+            y: 125
+            right_active: myController.rightBlink
+            left_active: myController.leftBlink
+            highBeam_active: myController.highBeam
+
         }
 
     }

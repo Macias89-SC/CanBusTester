@@ -3,6 +3,7 @@
 #include <QCanBusFrame>
 #include <QTransform>
 #include <QDebug>
+#include <QBitArray>
 
 namespace CanBusGauges{
 
@@ -234,6 +235,51 @@ void Controller::setSteeringFaultActive(const bool &steeringFaultActive)
     }
 }
 
+bool Controller::getLeftBlink() const {
+    return LeftBlink;
+}
+
+void Controller::setLeftBlink(const bool &leftBlink) {
+    if (LeftBlink != leftBlink) {
+        LeftBlink = leftBlink;
+        emit LeftBlinkChanged();
+    }
+}
+
+bool Controller::getRightBlink() const {
+    return RightBlink;
+}
+
+void Controller::setRightBlink(const bool &rightBlink) {
+    if (RightBlink != rightBlink) {
+        RightBlink = rightBlink;
+        emit RightBlinkChanged();
+    }
+}
+
+bool Controller::getHighBeam() const {
+    return HighBeam;
+}
+
+void Controller::setHighBeam(const bool &highBeam) {
+    if (HighBeam != highBeam) {
+        HighBeam = highBeam;
+        emit HighBeamChanged();
+    }
+}
+
+bool Controller::getFogLight() const
+{
+    return FogLight;
+}
+void Controller::setFogLight(const bool &fogLight) {
+    if (FogLight != fogLight) {
+        FogLight = fogLight;
+        emit FogLightChanged();
+    }
+}
+
+
 
 void Controller::initConnection()
 {
@@ -258,46 +304,60 @@ void Controller::processReceivedFrames()
     while (canDevice->framesAvailable()) {
          m_numberFramesReceived++;
         QCanBusFrame frame = canDevice->readFrame();
-        if(frame.frameId()==0x420){
-            const QByteArray data1 = frame.payload();
-            if (data1[4]==0x40)
-                { Controller::setCheckEngine(true);}
-            else
-                { Controller::setCheckEngine(false);}
-            if (data1[5]==0x8)
-                { Controller::setCharging(true);}
-            else
-                { Controller::setCharging(false);}
-
-            if (data1[0] < 0x50)  { Controller::setEngineTemp(0);}
-            if (data1[0] < 0x5F && data1[0] > 0x50)  { Controller::setEngineTemp(1);}
-            if (data1[0] < 0x6F && data1[0] > 0x5F) { Controller::setEngineTemp(2);}
-            if (data1[0] < 0x7D && data1[0] > 0x6F) { Controller::setEngineTemp(3);}
-             qDebug() << "temp: "<< data1[0];
-         //   if (data1[0] < 0x8C) { Controller::setEngineTemp(4);}
-         //   if (data1[0] < 0x9B) { Controller::setEngineTemp(5);}
-         //   if (data1[0] < 0xAA) { Controller::setEngineTemp(6);}
-
-        }
-        if(frame.frameId()==0x201){
-            const QByteArray data = frame.payload();
-            Controller::setSpeedGauge(data[4]);
-            Controller::setFuelLevel(data[7]);
-            //Controller::setEngineTemp(data[2]);
-            Controller::setRPM(data[0]);
-            Controller::setSpeedText(QString::number(data[4],10));
-
-           // qDebug() << "speed: "<< QString::number(data[0],10);
-        }
-        else
-        {
-          //  Controller::setSpeedGauge(0);
-         //   Controller::setFuelLevel(0);
-         //   Controller::setEngineTemp(0);
-        //    Controller::setRPM(0);
-         //   Controller::setSpeedText("ERR");
-        }
+        processFrame(frame);
     }
+}
+
+bool getBitValue(unsigned char byte, int pos) {
+    return (byte & (1 << pos)) != 0;
+}
+
+void Controller::processFrame(const QCanBusFrame &frame)
+{
+    const QByteArray data = frame.payload();
+    switch(frame.frameId()) {
+    case 0x201:
+        Controller::setSpeedGauge(data[4]);
+        Controller::setRPM(data[0]);
+        break;
+    case 0x39E:
+        Controller::setImobilizerActive(getBitValue(data[4],0));
+        Controller::setLeftBlink(getBitValue(data[1],0));
+        Controller::setRightBlink(getBitValue(data[1],1));
+        Controller::setDoorOpenActive(getBitValue(data[0],4));
+        Controller::setFogLight(getBitValue(data[4],3));
+        Controller::setHighBeam(getBitValue(data[2],7));
+        break;
+    case 0x417:
+        Controller::setEspActive(getBitValue(data[1],6));
+        Controller::setAbsActive(getBitValue(data[4],4));
+        break;
+    case 0x420:
+        Controller::setCruiseControlActive(getBitValue(data[6],3));
+        Controller::setCharging(getBitValue(data[5],3));
+        Controller::setCheckEngine(getBitValue(data[4],6));
+        if (data[0] < 0x50)  { Controller::setEngineTemp(0);}
+        if (data[0] < 0x5F && data[0] > 0x50)  { Controller::setEngineTemp(1);}
+        if (data[0] < 0x6F && data[0] > 0x5F) { Controller::setEngineTemp(2);}
+        if (data[0] < 0x7D && data[0] > 0x6F) { Controller::setEngineTemp(3);}
+       // if (data[0] < 0x8C && data[0] > 0x7D) { Controller::setEngineTemp(4);}
+       // if (data[0] < 0x9B && data[0] > 0x8C) { Controller::setEngineTemp(5);}
+        break;
+    case 0x461:
+        Controller::setSeatBeltActive(!getBitValue(data[1],5));
+        break;
+    case 0x435:
+        Controller::setSteeringFaultActive(getBitValue(data[1],7));
+        break;
+    case 0x430:
+        // Kod obsługi ramki 0x201
+        break;
+
+    default:
+        // Obsługa nieznanej ramki
+        break;
+    }
+
 }
 
 
