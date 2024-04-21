@@ -17,7 +17,7 @@ class Controller: public QObject
     Q_PROPERTY(quint8 RPM READ getRPM WRITE setRPM NOTIFY RPMChanged FINAL)
     Q_PROPERTY(QString SpeedText READ getSpeedText WRITE setSpeedText NOTIFY SpeedTextChanged FINAL)
     Q_PROPERTY(bool  Charging READ getCharging WRITE setCharging NOTIFY ChargingChanged FINAL)
-    Q_PROPERTY(bool CheckEngine READ getCheckEngine WRITE setCheckEngine NOTIFY CheckEngineChanged FINAL);
+    Q_PROPERTY(bool  CheckEngine READ getCheckEngine WRITE setCheckEngine NOTIFY CheckEngineChanged FINAL);
     Q_PROPERTY(bool  AbsActive READ getAbsActive WRITE setAbsActive NOTIFY AbsActiveChanged FINAL)
     Q_PROPERTY(bool  CruiseControlActive READ getCruiseControlActive WRITE setCruiseControlActive NOTIFY CruiseControlActiveChanged FINAL)
     Q_PROPERTY(bool  CruiseControlCancel READ getCruiseControlCancel WRITE setCruiseControlCancel NOTIFY CruiseControlCancelChanged FINAL)
@@ -28,6 +28,11 @@ class Controller: public QObject
     Q_PROPERTY(bool  ParkingBrakeActive READ getParkingBrakeActive WRITE setParkingBrakeActive NOTIFY ParkingBrakeActiveChanged FINAL)
     Q_PROPERTY(bool  SeatBeltActive READ getSeatBeltActive WRITE setSeatBeltActive NOTIFY SeatBeltActiveChanged FINAL)
     Q_PROPERTY(bool  SteeringFaultActive READ getSteeringFaultActive WRITE setSteeringFaultActive NOTIFY SteeringFaultActiveChanged FINAL)
+    Q_PROPERTY(bool leftBlink READ getLeftBlink WRITE setLeftBlink NOTIFY LeftBlinkChanged FINAL)
+    Q_PROPERTY(bool rightBlink READ getRightBlink WRITE setRightBlink NOTIFY RightBlinkChanged FINAL)
+    Q_PROPERTY(bool highBeam READ getHighBeam WRITE setHighBeam NOTIFY HighBeamChanged FINAL)
+    Q_PROPERTY(bool FogLight READ getFogLight WRITE setFogLight NOTIFY FogLightChanged FINAL)
+
 
 public:
 public:
@@ -84,6 +89,17 @@ public:
     bool getSteeringFaultActive() const;
     void setSteeringFaultActive(const bool &steeringFaultActive);
 
+    bool getLeftBlink() const;
+    void setLeftBlink(const bool &leftBlink);
+
+    bool getRightBlink() const;
+    void setRightBlink(const bool &rightBlink);
+
+    bool getHighBeam() const;
+    void setHighBeam(const bool &highBeam);
+
+    bool getFogLight() const;
+    void setFogLight(const bool &fogLight);
 
 
 signals:
@@ -105,6 +121,9 @@ signals:
     void ParkingBrakeActiveChanged();
     void SeatBeltActiveChanged();
     void SteeringFaultActiveChanged();
+    void LeftBlinkChanged();
+    void RightBlinkChanged();
+    void HighBeamChanged();
 
 private:
     bool  CheckEngine = false;
@@ -115,6 +134,7 @@ private:
     quint8 RPM=0;
     QString SpeedText="0";
     void processReceivedFrames();
+    void processFrame(const QCanBusFrame &frame);
     void initConnection();
     std::unique_ptr<QCanBusDevice>canDevice;
     double m_numberFramesReceived;
@@ -128,7 +148,10 @@ private:
     bool ParkingBrakeActive = false;
     bool SeatBeltActive = false;
     bool SteeringFaultActive = false;
-
+    bool LeftBlink = false;
+    bool RightBlink = false;
+    bool HighBeam = false;
+    bool FogLight = false;
 };
 }
 #endif // CONTROLLER_H

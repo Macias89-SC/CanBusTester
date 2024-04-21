@@ -14,7 +14,8 @@ if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
 endif()
 
 qt_add_executable(TesterCanBus_MazdaApp src/main.cpp
-    src/controller.h src/controller.cpp)
+    src/controller.h src/controller.cpp
+)
 
 qt_add_resources(TesterCanBus_MazdaApp "configuration"
     PREFIX "/"

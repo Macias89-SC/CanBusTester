@@ -10,7 +10,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Timeline 1.0
 import QtQuick.Shapes 1.0
 import QtQuick.Studio.Components 1.0
-//import QtQuick.Studio.Effects 1.0
+import QtQuick.Studio.Effects 1.0
 import QtQuick.Studio.LogicHelper 1.0
 import Qt5Compat.GraphicalEffects
 import TesterCanBus_Mazda
@@ -36,7 +36,110 @@ Rectangle{
         }
 
         Text {
-        id: text2
+            id: text1
+            x: 91
+            y: 345
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("0")
+            font.pixelSize: 22
+            font.bold: true
+            font.family: "Verdana"
+        }
+        Text {
+            id: text2
+            x: 55
+            y: 233
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("1")
+            font.pixelSize: 22
+            font.family: "Verdana"
+            font.bold: true
+        }
+
+        Text {
+            id: text3
+            x: 91
+            y: 126
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("2")
+            font.pixelSize: 22
+            font.family: "Verdana"
+            font.bold: true
+        }
+
+        Text {
+            id: text4
+            x: 190
+            y: 58
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("3")
+            font.pixelSize: 22
+            font.family: "Verdana"
+            font.bold: true
+        }
+
+        Text {
+            id: text5
+            x: 299
+            y: 58
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("4")
+            font.pixelSize: 22
+            font.family: "Verdana"
+            font.bold: true
+        }
+        Text {
+            id: text6
+            x: 388
+            y: 126
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("5")
+            font.pixelSize: 22
+            font.family: "Verdana"
+            font.bold: true
+        }
+        Text {
+            id: text7
+            x: 430
+            y: 233
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("6")
+            font.pixelSize: 22
+            font.family: "Verdana"
+            font.bold: true
+        }
+        Text {
+            id: text8
+            x: 388
+            y: 345
+            width: 27
+            height: 39
+            color: "#ffffff"
+            text: qsTr("7")
+            font.pixelSize: 22
+            font.family: "Verdana"
+            font.bold: true
+        }
+    }
+
+
+
+        Text {
+        id: text_1
         x: 122
         y: 360
         color: "#ffffff"
@@ -46,7 +149,7 @@ Rectangle{
         }
 
         Text {
-        id: text3
+        id: text_3
         x: 122
         y: 345
         color: "#ffffff"
@@ -54,7 +157,7 @@ Rectangle{
         font.pixelSize: 14
         font.family: "Verdana"
         }
-    }
+
 
 
         Item {
