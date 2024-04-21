@@ -27,7 +27,7 @@ RowLayout {
             x: modelData.x
             y: modelData.y
 
-            // Obraz dla wersji aktywnej
+            // For active Active 
             Image {
                 Layout.alignment: parent
                 //anchors.centerIn: parent
@@ -37,13 +37,14 @@ RowLayout {
                 visible: modelData.isActive
             }
 
-            // Obraz dla wersji nieaktywnej
+            //fort not active image
             Image {
                 Layout.alignment: parent
                 source: modelData.inactivePath
                 width: 50
                 height: 50
                 visible: !modelData.isActive
+
             }
         }
     }

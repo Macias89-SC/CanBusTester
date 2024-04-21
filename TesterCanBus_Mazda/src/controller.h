@@ -17,7 +17,7 @@ class Controller: public QObject
     Q_PROPERTY(quint8 RPM READ getRPM WRITE setRPM NOTIFY RPMChanged FINAL)
     Q_PROPERTY(QString SpeedText READ getSpeedText WRITE setSpeedText NOTIFY SpeedTextChanged FINAL)
     Q_PROPERTY(bool  Charging READ getCharging WRITE setCharging NOTIFY ChargingChanged FINAL)
-    Q_PROPERTY(bool  CheckEngine READ getCheckEngine WRITE setCheckEngine NOTIFY CheckEngineChanged FINAL);
+    Q_PROPERTY(bool  CheckEngine READ getCheckEngine WRITE setCheckEngine NOTIFY CheckEngineChanged FINAL)
     Q_PROPERTY(bool  AbsActive READ getAbsActive WRITE setAbsActive NOTIFY AbsActiveChanged FINAL)
     Q_PROPERTY(bool  CruiseControlActive READ getCruiseControlActive WRITE setCruiseControlActive NOTIFY CruiseControlActiveChanged FINAL)
     Q_PROPERTY(bool  CruiseControlCancel READ getCruiseControlCancel WRITE setCruiseControlCancel NOTIFY CruiseControlCancelChanged FINAL)
@@ -89,6 +89,7 @@ public:
     bool getSteeringFaultActive() const;
     void setSteeringFaultActive(const bool &steeringFaultActive);
 
+
     bool getLeftBlink() const;
     void setLeftBlink(const bool &leftBlink);
 
@@ -100,6 +101,7 @@ public:
 
     bool getFogLight() const;
     void setFogLight(const bool &fogLight);
+
 
 
 signals:
@@ -121,9 +123,11 @@ signals:
     void ParkingBrakeActiveChanged();
     void SeatBeltActiveChanged();
     void SteeringFaultActiveChanged();
+
     void LeftBlinkChanged();
     void RightBlinkChanged();
     void HighBeamChanged();
+
 
 private:
     bool  CheckEngine = false;
@@ -148,10 +152,13 @@ private:
     bool ParkingBrakeActive = false;
     bool SeatBeltActive = false;
     bool SteeringFaultActive = false;
+
     bool LeftBlink = false;
     bool RightBlink = false;
     bool HighBeam = false;
     bool FogLight = false;
+
+
 };
 }
 #endif // CONTROLLER_H

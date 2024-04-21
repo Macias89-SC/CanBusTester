@@ -70,6 +70,7 @@ Item {
             id: isoIcons
             x: 115
             y: 626
+
             doorOpen_active: myController.DoorOpenActive
             sterringFault_active: myController.SteeringFaultActive
             seatBelt_active: myController.SeatBeltActive
@@ -81,6 +82,7 @@ Item {
             esp_active: myController.EspActive
             imobilizer_active:myController.ImobilizerActive
             antiFog_active: myController.FogLight
+
             scale: 0.8
         }
         LightIcons {
@@ -90,6 +92,7 @@ Item {
             right_active: myController.rightBlink
             left_active: myController.leftBlink
             highBeam_active: myController.highBeam
+
         }
 
     }
